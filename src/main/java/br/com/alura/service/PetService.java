@@ -3,14 +3,10 @@ package br.com.alura.service;
 import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.dominio.Pet;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +39,7 @@ public class PetService {
             String[] campos = line.split(",");
             Pet pet = criarPet(campos);
 
-            HttpResponse<String> response = dispararRequisicaoPost("http://localhost:8080/abrigos/" + idOuNome + "/pets", pet);
+            HttpResponse<String> response = client.dispararRequisicaoPost("http://localhost:8080/abrigos/" + idOuNome + "/pets", pet);
             int statusCode = response.statusCode();
             String responseBody = response.body();
             if (statusCode == 200) {
@@ -99,17 +95,5 @@ public class PetService {
 
     private String lerDoTeclado() {
         return new Scanner(System.in).nextLine();
-    }
-
-    private HttpResponse<String> dispararRequisicaoPost(String uri, Pet pet) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .header("Content-Type", "application/json")
-                .method("POST", HttpRequest.BodyPublishers.ofString(new Gson().toJson(pet)))
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return response;
     }
 }
