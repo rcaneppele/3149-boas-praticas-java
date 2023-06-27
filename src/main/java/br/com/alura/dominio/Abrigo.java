@@ -6,6 +6,7 @@ public class Abrigo {
     private String nome;
     private String telefone;
     private String email;
+    private Pet[] pets;
 
     public Abrigo(String nome, String telefone, String email) {
         this.nome = nome;
@@ -19,5 +20,9 @@ public class Abrigo {
 
     public String getNome() {
         return nome;
+    }
+
+    public Pet[] getPets() {
+        return pets;
     }
 }

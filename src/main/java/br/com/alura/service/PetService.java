@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class PetService {
 
-    ClientHttpConfiguration client;
+    private ClientHttpConfiguration client;
 
     public PetService(ClientHttpConfiguration client) {
         this.client = client;
