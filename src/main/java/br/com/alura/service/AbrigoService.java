@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class AbrigoService {
 
-    private final ClientHttpConfiguration client;
+    private ClientHttpConfiguration client;
 
     public AbrigoService(ClientHttpConfiguration client) {
         this.client = client;
