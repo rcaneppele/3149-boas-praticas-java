@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class AbrigoService {
 
-    private final ClientHttpConfiguration client;
+    private ClientHttpConfiguration client;
 
     public AbrigoService(ClientHttpConfiguration client) {
         this.client = client;
@@ -43,8 +43,16 @@ public class AbrigoService {
     public void listarAbrigos() throws IOException, InterruptedException {
         HttpResponse<String> response = client.dispararRequisicaoGet("http://localhost:8080/abrigos");
         String responseBody = response.body();
-        System.out.println("Abrigos cadastrados:");
         Abrigo[] abrigos = new ObjectMapper().readValue(responseBody, Abrigo[].class);
+        if(abrigos.length != 0) {
+            mostrarAbrigosCadastrados(abrigos);
+        } else {
+            System.out.println("Não há abrigos cadastrados");
+        }
+    }
+
+    private void mostrarAbrigosCadastrados(Abrigo[] abrigos) {
+        System.out.println("Abrigos cadastrados:");
         List<Abrigo> abrigoList = Arrays.stream(abrigos).toList();
         for (Abrigo abrigo : abrigoList) {
             long id = abrigo.getId();

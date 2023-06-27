@@ -3,12 +3,12 @@ package br.com.alura.dominio;
 public class Pet {
 
     private long id;
-    private final String tipo;
-    private final String nome;
-    private final String raca;
-    private final int idade;
-    private final String cor;
-    private final float peso;
+    private String tipo;
+    private String nome;
+    private String raca;
+    private int idade;
+    private String cor;
+    private float peso;
 
     public Pet(String tipo, String nome, String raca, int idade, String cor, float peso){
         this.tipo = tipo;
