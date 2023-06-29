@@ -19,12 +19,13 @@ public class AbrigoService {
     }
 
     public void cadastrarAbrigo() throws IOException, InterruptedException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o nome do abrigo:");
-        String nome = lerDoTeclado();
+        String nome = scanner.nextLine();
         System.out.println("Digite o telefone do abrigo:");
-        String telefone = lerDoTeclado();
+        String telefone = scanner.nextLine();
         System.out.println("Digite o email do abrigo:");
-        String email = lerDoTeclado();
+        String email = scanner.nextLine();
 
         Abrigo abrigo = new Abrigo(nome, telefone, email);
 
@@ -59,9 +60,5 @@ public class AbrigoService {
             String nome = abrigo.getNome();
             System.out.println(id +" - " +nome);
         }
-    }
-
-    private String lerDoTeclado() {
-        return new Scanner(System.in).nextLine();
     }
 }
