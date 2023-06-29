@@ -21,11 +21,12 @@ public class PetService {
     }
 
     public boolean importarPetsDoAbrigo() throws IOException, InterruptedException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o id ou nome do abrigo:");
-        String idOuNome = lerDoTeclado();
+        String idOuNome = scanner.nextLine();
 
         System.out.println("Digite o nome do arquivo CSV:");
-        String nomeArquivo = lerDoTeclado();
+        String nomeArquivo = scanner.nextLine();
 
         BufferedReader reader;
         try {
@@ -69,8 +70,9 @@ public class PetService {
     }
 
     public boolean listarPetsDoAbrigo() throws IOException, InterruptedException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o id ou nome do abrigo:");
-        String idOuNome = lerDoTeclado();
+        String idOuNome = scanner.nextLine();
 
         HttpResponse<String> response = client.dispararRequisicaoGet("http://localhost:8080/abrigos/" + idOuNome + "/pets");
         int statusCode = response.statusCode();
@@ -91,9 +93,5 @@ public class PetService {
             System.out.println(id +" - " +tipo +" - " +nome +" - " +raca +" - " +idade +" ano(s)");
         }
         return false;
-    }
-
-    private String lerDoTeclado() {
-        return new Scanner(System.in).nextLine();
     }
 }
