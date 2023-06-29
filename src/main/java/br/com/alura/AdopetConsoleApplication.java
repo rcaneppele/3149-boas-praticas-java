@@ -1,44 +1,29 @@
 package br.com.alura;
 
-import br.com.alura.client.ClientHttpConfiguration;
-import br.com.alura.service.AbrigoService;
-import br.com.alura.service.PetService;
 import java.util.Scanner;
 
 public class AdopetConsoleApplication {
 
     public static void main(String[] args) {
-        ClientHttpConfiguration client = new ClientHttpConfiguration();
-        AbrigoService abrigoService = new AbrigoService(client);
-        PetService petService = new PetService(client);
+        CommandExecutor commandExecutor = new CommandExecutor();
         System.out.println("##### BOAS VINDAS AO SISTEMA ADOPET CONSOLE #####");
-        try {
-            int opcaoEscolhida = 0;
-            while (opcaoEscolhida != 5) {
-                exibirMenu();
 
-                String textoDigitado = lerDoTeclado();
-                opcaoEscolhida = Integer.parseInt(textoDigitado);
+        int opcaoEscolhida = 0;
+        while (opcaoEscolhida != 5) {
+            exibirMenu();
 
-                if (opcaoEscolhida == 1) {
-                    abrigoService.listarAbrigos();
-                } else if (opcaoEscolhida == 2) {
-                    abrigoService.cadastrarAbrigo();
-                } else if (opcaoEscolhida == 3) {
-                    if (petService.listarPetsDoAbrigo()) continue;
-                } else if (opcaoEscolhida == 4) {
-                    if (petService.importarPetsDoAbrigo()) continue;
-                } else if (opcaoEscolhida == 5) {
-                    break;
-                } else {
-                    System.out.println("NÚMERO INVÁLIDO!");
-                    opcaoEscolhida = 0;
-                }
+            String textoDigitado = lerDoTeclado();
+            opcaoEscolhida = Integer.parseInt(textoDigitado);
+
+            switch (opcaoEscolhida) {
+                case 1 -> commandExecutor.executeCommand(new ListarAbrigoCommand());
+                case 2 -> commandExecutor.executeCommand(new CadastrarAbrigoCommand());
+                case 3 -> commandExecutor.executeCommand(new ListarPetsDoAbrigoCommand());
+                case 4 -> commandExecutor.executeCommand(new ImportarPetsDoAbrigoCommand());
+                case 5 -> System.exit(0);
             }
-            System.out.println("Finalizando o programa...");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        System.out.println("Finalizando o programa...");
     }
 
     private static String lerDoTeclado() {
