@@ -1,12 +1,6 @@
-package br.com.alura.dominio;
+package br.com.alura.domain;
 
 public class Abrigo {
-
-    private long id;
-    private String nome;
-    private String telefone;
-    private String email;
-    private Pet[] pets;
 
     public Abrigo() {
 
@@ -18,7 +12,13 @@ public class Abrigo {
         this.email = email;
     }
 
-    public long getId() {
+    private Long id;
+    private String nome;
+    private String telefone;
+    private String email;
+    private Pet[] pets;
+
+    public Long getId() {
         return id;
     }
 
@@ -36,12 +36,5 @@ public class Abrigo {
 
     public Pet[] getPets() {
         return pets;
-    }
-
-    @Override
-    public String toString() {
-        return """
-               "id":%s,"nome":"%s","telefone":"%s","email":"%s"
-               """.formatted(this.id, this.nome, this.telefone, this.email);
     }
 }
