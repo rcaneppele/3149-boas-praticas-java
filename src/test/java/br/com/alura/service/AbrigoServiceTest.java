@@ -22,7 +22,7 @@ public class AbrigoServiceTest {
     private Abrigo abrigo = new Abrigo("Teste", "61981880392", "abrigo_alura@gmail.com");
 
     @Test
-    public void deveVerificarQuandoHaAbrigosCadastrados() throws IOException, InterruptedException {
+    public void deveVerificarQuandoHaAbrigo() throws IOException, InterruptedException {
         abrigo.setId(0L);
         String expectedAbrigosCadastrados = "Abrigos cadastrados:";
         String expectedIdENome = "0 - Teste";
@@ -45,7 +45,7 @@ public class AbrigoServiceTest {
     }
 
     @Test
-    public void deveVerificarQuandoNaoHaAbrigosCadastrados() throws IOException, InterruptedException {
+    public void deveVerificarQuandoNaoHaAbrigo() throws IOException, InterruptedException {
         abrigo.setId(0L);
         String expected = "Não há abrigos cadastrados";
 
